@@ -53,3 +53,5 @@ addEventListener(
 )
 ```
 
+### 客户端软件推荐v2rayN
+https://github.com/2dust/v2rayN/releases/tag/4.20

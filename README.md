@@ -24,17 +24,30 @@ TLS: tls
 
 可以使用cloudflare的workers来`中转流量`，配置为：  https://dash.cloudflare.com/login
 ```
-addEventListener(  
-    "fetch",event => {  
-        let url=new URL(event.request.url);  
-        url.hostname="xx.xxxx.xx";//你的heroku域名    
-        let request=new Request(url,event.request);  
-        event. respondWith(  
-            fetch(request)  
-        )  
-    }  
+addEventListener(
+    "fetch",event => {
+        let url=new URL(event.request.url);
+        url.hostname="xx.xxxx.xx";//你的heroku域名
+        let request=new Request(url,event.request);
+        event. respondWith(
+            fetch(request)
+        )
+    }
 )
 ```
-
+addEventListener(
+  "fetch",event => {
+     let url=new URL(event.request.url);
+     if (new Date().getDate()%2==0) {
+       url.hostname="first.herokuapp.com";//你的heroku域名
+     } else {
+       url.hostname="second.herokuapp.com";//你的heroku域名
+     }
+     let request=new Request(url,event.request);
+     event.respondWith(
+       fetch(request)
+     )
+  }
+)
 
 
